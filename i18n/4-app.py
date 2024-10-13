@@ -11,8 +11,6 @@ class Config:
     Config class
     """
     LANGUAGES = ['en', 'fr']
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
 app = Flask(__name__)
@@ -20,6 +18,8 @@ app.url_map.strict_slashes = False
 app.config.from_object(Config)
 
 babel = Babel(app)
+Babel.default_locale = 'en'
+Babel.default_timezone = 'UTC'
 
 
 @app.route('/', methods=['GET'])
