@@ -1,22 +1,20 @@
-from pymongo import MongoClient
-from bson import decode_file_iter
+use Holberton_school  // Switch to the target database
 
-# Step 1: Connect to MongoDB
-client = MongoClient("mongodb://localhost:27017/")
-db = client["Holberton school"]
-collection = db["nginx"]
+db.createCollection("nginx")  // Create the collection (if not already present)
 
-# Step 2: Open and read the nginx.bson file
-bson_file_path = "path/to/your/nginx.bson"  # Update with the correct path
+// Insert sample data
+db.nginx.insertMany([
+  { method: "GET", status: 200 },
+  { method: "POST", status: 201 },
+  { method: "PUT", status: 200 },
+  { method: "PATCH", status: 204 },
+  { method: "DELETE", status: 404 },
+  { method: "GET", status: 200 },
+  { method: "GET", status: 200 },
+  { method: "POST", status: 201 },
+  { method: "PUT", status: 200 },
+  { method: "DELETE", status: 404 }
+])
 
-try:
-    with open(bson_file_path, "rb") as f:
-        for document in decode_file_iter(f):
-            # Step 3: Insert each document into the collection
-            collection.insert_one(document)
-    print("Documents successfully inserted.")
-except Exception as e:
-    print(f"An error occurred: {e}")
-
-# Step 4: Verify the insertion
-print(f"Number of documents in 'nginx' collection: {collection.count_documents({})}")
+// Verify the inserted data
+db.nginx.find().pretty()
