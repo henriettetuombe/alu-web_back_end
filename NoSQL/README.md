@@ -1,13 +1,37 @@
-# NoSQL
+# MongoDB List Databases
 
-## Resources
-### Read or watch:
+This project provides scripts to list all databases in MongoDB.
 
-- [NoSQL Databases Explained](https://intranet.aluswe.com/rltoken/0HR2bZ3XFJzkttuEVF5Rug)
-- [What is NoSQL?](https://intranet.aluswe.com/rltoken/JGxz6PJsAN9cjBBT_WVCAg)
-- [MongoDB with Python Crash Course - Tutorial for Beginners](https://intranet.aluswe.com/rltoken/PkdXgnfXUfJIk5iqf9Wp4A)
-- [MongoDB Tutorial 2 : Insert, Update, Remove, Query](https://intranet.aluswe.com/rltoken/y6ncfHy0Hn7uqaIyitWQRg)
-- [Aggregation](https://intranet.aluswe.com/rltoken/8VZ6IpKjlIfEi_uixKDRWw)
-- [Introduction to MongoDB and Python](https://intranet.aluswe.com/rltoken/BLt93wwWTkVQWVlSDerI1g)
-- [mongo Shell Methods](https://intranet.aluswe.com/rltoken/6irh8QhOR439xQADw6ulDg)
-- [The mongo Shell](https://intranet.aluswe.com/rltoken/g_jeFkZwL4QpP6OlRsMtfQ)
+## Requirements
+
+- Ubuntu 18.04 LTS
+- MongoDB 4.2
+- Python 3.7
+- PyMongo 3.10
+
+## Installation
+
+1. Install MongoDB 4.2:
+    ```sh
+    $ wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
+    $ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+    $ sudo apt-get update
+    $ sudo apt-get install -y mongodb-org
+    ```
+
+2. Start MongoDB service:
+    ```sh
+    $ sudo service mongod start
+    ```
+
+3. Install PyMongo:
+    ```sh
+    $ pip3 install pymongo
+    ```
+
+## Usage
+
+### MongoDB Shell Script
+
+To list all databases using the MongoDB shell script, run:
+```sh
