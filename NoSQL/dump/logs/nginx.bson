@@ -1,9 +1,22 @@
-import pymongo
+from pymongo import MongoClient
+from bson import decode_file_iter
 
-client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["your_database_name"]
+# Step 1: Connect to MongoDB
+client = MongoClient("mongodb://localhost:27017/")
+db = client["Holberton school"]
 collection = db["nginx"]
 
-# Insert sample data
-collection.insert_many([{"key": "value"} for _ in range(10)])
-print("Inserted sample data.")
+# Step 2: Open and read the nginx.bson file
+bson_file_path = "path/to/your/nginx.bson"  # Update with the correct path
+
+try:
+    with open(bson_file_path, "rb") as f:
+        for document in decode_file_iter(f):
+            # Step 3: Insert each document into the collection
+            collection.insert_one(document)
+    print("Documents successfully inserted.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+# Step 4: Verify the insertion
+print(f"Number of documents in 'nginx' collection: {collection.count_documents({})}")
